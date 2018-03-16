@@ -7,7 +7,7 @@
 
 # Example code in package build process
 *-Ex.R
-
+d
 # Output files from R CMD build
 /*.tar.gz
 
@@ -31,3 +31,5 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+.DS_Store
+data/**

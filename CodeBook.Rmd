@@ -1,6 +1,172 @@
 ---
 title: "CodeBook"
-author: "Rob Lewis"
-date: "3/8/2018"
 output: html_document
 ---
+
+# Source
+[UCI Machine Learning Repo - Human Recognition Using Smartphones](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
+
+See description included with the original dataset below.
+
+# Transformations
+
+1. Merged test and training data.
+2. Factorized activities.
+3. Set features as column names of measurement data.
+4. Merged activities & subjects with measurement data.
+5. Filtered out all metrics except for means & standard deviations.
+6. Renamed variables as follows:
+    * Edited variable names that had "body" twice ("bodybody" -> "body"). Seems like an error in the initial listing of feature names.
+    * Remove "()" from function names ("mean()" -> "mean")
+    * Replace dashes, underscores, & CamelCase with periods to conform to R conventions ("_-" -> ".")
+7. Converted data to tibble.
+
+# Naming Conventions
+Variable naming convention of measurements is as follows:
+
+`<domain>.<acceleration_type>.<measurement_device>[.Jerk][.Mag].<summarization_function>.<axis>`
+
+Where the following values describe the data value:
+
+* domain: 't' | 'f' -- time or frequency domain
+* acceleration_type: 'body' | 'gravity' -- body or gravity acceleration
+* measurement_device: 'acc' | 'gyro' -- accelerometer or gyroscope signal
+* 'jerk' -- jerk (acceleration derived in time)
+* 'mag' --  magnitude (Euclidean norm)
+* summarization_function: 'mean' | 'std' -- mean or standard deviation used to summarize signal
+* axis: 'x | 'y' | 'y' -- axis of signal
+
+# Variables
+
+## Label / Tags
+* activity -- The activity being performed.
+* subject -- The subject performing the activity.
+
+## Frequency Domain
+### Body Acceleration
+#### Accelerometer Measurements
+##### Acceleration
+* f.body.acc.mag.mean
+* f.body.acc.mag.std
+* f.body.acc.mean.x
+* f.body.acc.mean.y
+* f.body.acc.mean.z
+* f.body.acc.std.x
+* f.body.acc.std.y
+* f.body.acc.std.z
+
+##### Jerk
+* f.body.acc.jerk.mag.mean
+* f.body.acc.jerk.mag.std
+* f.body.acc.jerk.mean.x
+* f.body.acc.jerk.mean.y
+* f.body.acc.jerk.mean.z
+* f.body.acc.jerk.std.x
+* f.body.acc.jerk.std.y
+* f.body.acc.jerk.std.z
+
+#### Gyroscope Measurements
+##### Acceleration
+* f.body.gyro.mag.mean
+* f.body.gyro.mag.std
+* f.body.gyro.mean.x
+* f.body.gyro.mean.y
+* f.body.gyro.mean.z
+* f.body.gyro.std.x
+* f.body.gyro.std.y
+* f.body.gyro.std.z
+
+##### Jerk
+* f.body.gyro.jerk.mag.mean
+* f.body.gyro.jerk.mag.std
+
+## Time Domain
+### Body Acceleration
+#### Accelerometer Measurements
+##### Acceleration
+* t.body.acc.mag.mean
+* t.body.acc.mag.std
+* t.body.acc.mean.x
+* t.body.acc.mean.y
+* t.body.acc.mean.z
+* t.body.acc.std.x
+* t.body.acc.std.y
+* t.body.acc.std.z
+
+##### Jerk
+* t.body.acc.jerk.mag.mean
+* t.body.acc.jerk.mag.std
+* t.body.acc.jerk.mean.x
+* t.body.acc.jerk.mean.y
+* t.body.acc.jerk.mean.z
+* t.body.acc.jerk.std.x
+* t.body.acc.jerk.std.y
+* t.body.acc.jerk.std.z
+
+#### Gyroscope Measurements
+##### Acceleration
+* t.body.gyro.mag.mean
+* t.body.gyro.mag.std
+* t.body.gyro.mean.x
+* t.body.gyro.mean.y
+* t.body.gyro.mean.z
+* t.body.gyro.std.x
+* t.body.gyro.std.y
+* t.body.gyro.std.z
+
+##### Jerk
+* t.body.gyro.jerk.mag.mean
+* t.body.gyro.jerk.mag.std
+* t.body.gyro.jerk.mean.x
+* t.body.gyro.jerk.mean.y
+* t.body.gyro.jerk.mean.z
+* t.body.gyro.jerk.std.x
+* t.body.gyro.jerk.std.y
+* t.body.gyro.jerk.std.z
+
+### Gravity Acceleration
+#### Accelerometer Measurements
+##### Acceleration
+* t.gravity.acc.mag.mean
+* t.gravity.acc.mag.std
+* t.gravity.acc.mean.x
+* t.gravity.acc.mean.y
+* t.gravity.acc.mean.z
+* t.gravity.acc.std.x
+* t.gravity.acc.std.y
+* t.gravity.acc.std.z
+
+# Comments from Original Dataset
+*Note: Only means and standard deviations have been included in the tidy dataset.*
+
+> The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+>
+> Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+>
+> Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+>
+> These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+>
+> * tBodyAcc-XYZ
+> * tGravityAcc-XYZ
+> * tBodyAccJerk-XYZ
+> * tBodyGyro-XYZ
+> * tBodyGyroJerk-XYZ
+> * tBodyAccMag
+> * tGravityAccMag
+> * tBodyAccJerkMag
+> * tBodyGyroMag
+> * tBodyGyroJerkMag
+> * fBodyAcc-XYZ
+> * fBodyAccJerk-XYZ
+> * fBodyGyro-XYZ
+> * fBodyAccMag
+> * fBodyAccJerkMag
+> * fBodyGyroMag
+> * fBodyGyroJerkMag
+>
+> The set of variables that were estimated from these signals are: 
+>
+> * mean(): Mean value
+> * std(): Standard deviation
