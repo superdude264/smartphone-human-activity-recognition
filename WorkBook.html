@@ -124,10 +124,6 @@ $(document).ready(function () {
 </div>
 
 
-<div id="options" class="section level3">
-<h3>Options</h3>
-<pre class="r"><code>options(knitr.duplicate.label = 'allow')</code></pre>
-</div>
 <div id="libraries" class="section level3">
 <h3>Libraries</h3>
 <pre class="r"><code>library(tidyverse)</code></pre>
@@ -141,7 +137,7 @@ DATA_FILE = paste0(DATA_DIR, &quot;uci_har_dataset.zip&quot;)</code></pre>
 <div id="download-store-data" class="section level3">
 <h3>Download &amp; store data</h3>
 <pre class="r"><code>if(!file.exists(DATA_DIR)){dir.create(DATA_DIR)}
-# download.file(FILE_URL, destfile = DATA_FILE, method = &quot;curl&quot;)
+download.file(FILE_URL, destfile = DATA_FILE, method = &quot;curl&quot;)
 DOWNLOAD_DATE &lt;- date()</code></pre>
 </div>
 <div id="extract-data" class="section level3">
@@ -283,7 +279,7 @@ if (!file.exists(TIDY_DATA)) { dir.create(TIDY_DATA) }
 setwd(TIDY_DATA)
 
 write.table(har_tidy, &quot;har_tidy.txt&quot;, row.names = F)
-write.csv(har_summary, &quot;har_summary.txt&quot;, row.names = F)
+write.table(har_summary, &quot;har_summary.txt&quot;, row.names = F)
 
 # Write out access info
 cat(paste(&quot;Source&quot;, FILE_URL, sep = &quot;\t&quot;), file = &quot;ACCESS_INFO.txt&quot;, sep = &quot;\n&quot;)

@@ -4,10 +4,6 @@
 #'   html_document:
 #'     df_print: paged
 #' ---
-#' ### Options
-## ----GlobalOptions, message=FALSE, warning=FALSE-------------------------
-options(knitr.duplicate.label = 'allow')
-
 #' 
 #' ### Libraries
 ## ----message=FALSE, warning=FALSE----------------------------------------
@@ -24,7 +20,7 @@ DATA_FILE = paste0(DATA_DIR, "uci_har_dataset.zip")
 #' ### Download & store data
 ## ----message=FALSE, warning=FALSE----------------------------------------
 if(!file.exists(DATA_DIR)){dir.create(DATA_DIR)}
-# download.file(FILE_URL, destfile = DATA_FILE, method = "curl")
+download.file(FILE_URL, destfile = DATA_FILE, method = "curl")
 DOWNLOAD_DATE <- date()
 
 #' 
@@ -176,7 +172,7 @@ if (!file.exists(TIDY_DATA)) { dir.create(TIDY_DATA) }
 setwd(TIDY_DATA)
 
 write.table(har_tidy, "har_tidy.txt", row.names = F)
-write.csv(har_summary, "har_summary.txt", row.names = F)
+write.table(har_summary, "har_summary.txt", row.names = F)
 
 # Write out access info
 cat(paste("Source", FILE_URL, sep = "\t"), file = "ACCESS_INFO.txt", sep = "\n")
