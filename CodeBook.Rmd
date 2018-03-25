@@ -24,7 +24,7 @@ See description included with the original dataset below.
 # Naming Conventions
 Variable naming convention of measurements is as follows:
 
-`<domain>.<acceleration_type>.<measurement_device>[.Jerk][.Mag].<summarization_function>.<axis>`
+`<domain>.<acceleration_type>.<measurement_device>[.jerk][.mag].<summarization_function>.<axis>`
 
 Where the following values describe the data value:
 
