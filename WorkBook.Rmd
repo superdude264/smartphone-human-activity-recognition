@@ -188,9 +188,7 @@ setwd("../..")
 
 ```{r echo=FALSE, message=FALSE, results='hide', purl=FALSE}
 # Write the code in the document to an R script
-input  = knitr::current_input()  # filename of input document
-output = "run_analysis.R"
-knitr::purl(input,output,documentation=2,quiet=T)
+knitr::purl(knitr::current_input(),"run_analysis.R", documentation = 2, quiet = TRUE)
 ```
 
 
